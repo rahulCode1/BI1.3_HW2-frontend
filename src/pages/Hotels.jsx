@@ -3,22 +3,27 @@ import useFetch from "../useFetch.jsx";
 
 const Hotels = () => {
   const [message, setMessage] = useState("");
-  const { data, error, loading } = useFetch("http://localhost:80/hotels");
-  
+  const { data, error, loading } = useFetch(
+    "https://bi-1-3-hw-2-backend-cyan.vercel.app/hotels"
+  );
+
   const hotels = data?.hotels;
 
   const deleteHotel = async (id) => {
     try {
-      const res = await fetch(`http://localhost/hotels/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://bi-1-3-hw-2-backend-cyan.vercel.app/hotels/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!res.ok) {
         throw "Failed to delete hotel.";
       }
 
       const data = await res.json();
-      console.log(data)
+      console.log(data);
 
       if (data) {
         setMessage("Hotel deleted successfully.");
